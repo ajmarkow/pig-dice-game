@@ -9,7 +9,7 @@
 
 **_Objects_**
 Scorecard
-Die? or variable
+Die? or variable.
 Turn
 Player 1 - variables
 Player 2 - variables
