@@ -140,3 +140,10 @@ Expect: scoreCard.total.toEqual(6)
     Code:youWon();
     Expect:Alert saying you won!
     Test Passed
+
+**TO DO ITEMS**
+
+-connect user interface to functions
+-test new methods on player object
+
+-

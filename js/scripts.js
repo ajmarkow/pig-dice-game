@@ -19,10 +19,10 @@ function scoreCard() {
 // *Doesn't work
 function createTurn(dicevalue) {
   const turnarray = [];
-  for (let index = 1; dicevalue != 1; index += 1) {
-    turnarray.push(dicevalue);
-    console.log(turnarray);
-  }
+  // for (let index = 1; dicevalue != 1; index += 1) {
+  turnarray.push(dicevalue);
+  console.log(turnarray);
+  // }
 }
 
 function grandTotal(array) {
@@ -50,6 +50,14 @@ function EndTurn() {
       console.log("Roll again or Hold");
   }
 }
+
+player.prototype.checkScore = function () {
+  if (this.grandTotal >= 100) {
+    youWon();
+  } else {
+  }
+};
+
 function newGame() {
   player1scorecard.length = 0;
   player2scorecard.length = 0;
