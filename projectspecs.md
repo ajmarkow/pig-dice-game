@@ -36,3 +36,11 @@ Player 2 - variables
 | **If player reaches 100, they win**                                                         | 3                                                   | Congratulations! You win.             |
 | **If player ends turn by hold, points accumulated on turn is added to overall total**       | 15                                                  | 32                                    |
 | **When die is rolled, the number the die landed on is displayed**                           | Die roll button is clicked                          | Die roll is shown in designated area. |
+
+**_Tests_**
+
+Describe: Dice roll gives you a random number from 1-6
+Test: roll is a random number
+Code: rollDice();
+Expect: return(randomnumber);
+Test Passed
