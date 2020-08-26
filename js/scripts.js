@@ -1,6 +1,8 @@
 // ** Business Logic
 let player1scorecard = [2, 3];
 let player2scorecard = [];
+let player1turnarray = [];
+let player2turnarray = [];
 
 function rollDice() {
   let dicevalue = Math.floor(Math.random() * 6) + 1;
@@ -36,6 +38,7 @@ function turnTotal(array) {
 function recordTurnScore(array) {
   let turnscore = array.reduce((a, b) => a + b);
   this.playerscorecard.push(turnscore);
+  player1turnarray.length = 0;
 }
 
 const numberRolled = 1;
@@ -56,6 +59,15 @@ function youWon() {
   alert("YOU WON!");
   $("#youwon").HTML("<em>");
 }
+
+function player(playername) {
+  this.name = name;
+  this.scoreCard = scoreCard;
+  this.turnTotal = turnTotal();
+}
+
+let player1 = { name: "player1", arrays: [player1turnarray, player1scorecard] };
+let player2 = { name: "player1", arrays: [player2turnarray, player2scorecard] };
 
 // function nextTurn(){
 //     if (player 1 turn)
