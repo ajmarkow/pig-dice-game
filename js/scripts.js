@@ -25,6 +25,11 @@ function turnTotal(array) {
 //   return a + b;
 // }
 
+function recordTurnScore(array) {
+  let turnscore = array.reduce((a, b) => a + b);
+  this.playerscorecard.push(turnscore);
+}
+
 switch (numberRolled) {
   case 1:
     console.log("Turn over!");
