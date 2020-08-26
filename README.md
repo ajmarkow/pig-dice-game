@@ -94,10 +94,6 @@ Player 2 - variables
 **_Tests_**
 
 Describe: Dice roll gives you a random number from 1-6
-Test: roll is a random number
-Code: rollDice();
-Expect: return(randomnumber);
-Test Passed
 
 ScoreCard.prototype.subTotal = function () {
 this.currentScore +=1;
@@ -108,3 +104,39 @@ Describe: Scorecard will have 2 arrays, one for each player, which can be called
 Test: scorecard.total returns value of all numbers in array added
 Code: scoreCard.total([1,2,3])
 Expect: scoreCard.total.toEqual(6)
+
+- rollDice()
+  \*Test: roll is a random number
+  Code: rollDice();
+  Expect: return(randomnumber);
+  Test Passed
+
+- scoreCard()
+- createTurn(dicevalue)
+
+- grandTotal(array)
+  -Describe: Adds the turn totals array together to get total round score for player
+  Test: adds 2,3 1 = 6
+  Code:grandTotal(arrayname);
+  Expect: arrayname total returned, equal to 6
+  Test Passed
+
+- turnTotal(array)
+  -Describe: Adds the roll totals array together to get total round score for player
+  Test: adds 2,3 1 = 6
+  Code:grandTotal(arrayname);
+  Expect: arrayname total returned, equal to 6
+  Test Passed
+
+- recordTurnScore(array)
+- newGame()
+  Describe:emptys player scorecard arrays
+  Test: arrays with content now equal zero
+  Code: newGame()
+  Expect: player1scorecard = [] and player2scorecard = []
+- youWon()
+  -Describe: Shows alert and HTML saying "You Won!"
+  - \*Test:youWon().toEqual= alert (you Won!)
+    Code:youWon();
+    Expect:Alert saying you won!
+    Test Passed
