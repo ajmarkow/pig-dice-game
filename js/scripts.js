@@ -40,16 +40,16 @@ function recordTurnScore(array) {
   this.playerscorecard.push(turnscore);
   player1turnarray.length = 0;
 }
-
-const numberRolled = 1;
-switch (numberRolled) {
-  case 1:
-    console.log("Turn over!");
-    break;
-  default:
-    console.log("Roll again or Hold");
+function EndTurn() {
+  const numberRolled = 1;
+  switch (numberRolled) {
+    case 1:
+      console.log("Turn over!");
+      break;
+    default:
+      console.log("Roll again or Hold");
+  }
 }
-
 function newGame() {
   player1scorecard.length = 0;
   player2scorecard.length = 0;
@@ -60,11 +60,36 @@ function youWon() {
   $("#youwon").HTML("<em>");
 }
 
+//Object Constructor
 function player(playername) {
-  this.name = name;
-  this.scoreCard = scoreCard;
-  this.turnTotal = turnTotal();
+  this.name = playername;
+  this.scoreCard = [];
+  this.turnArray = [];
+  this.roll = rollDice();
+  this.hold = recordTurnScore();
+  this.grandTotal = grandTotal();
 }
+player.prototype.roll = function (roll) {
+  this.roll = Math.floor(Math.random() * 6) + 1;
+};
+
+player.prototype.grandTotal = function () {
+  return grandTotal(player.turnArray);
+};
+
+player.prototype.turnTotal = function () {
+  return turnTotal(player.turnArray);
+};
+
+player.prototype.recordTurnScore = function () {
+  this.grandTotal += this.turnScore;
+  // this.turnScore = 0;
+  recordTurnScore(player.scoreCard);
+};
+
+player.prototype.EndTurn = function () {
+  EndTurn();
+};
 
 let player1 = { name: "player1", arrays: [player1turnarray, player1scorecard] };
 let player2 = { name: "player1", arrays: [player2turnarray, player2scorecard] };
