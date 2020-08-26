@@ -22,7 +22,7 @@ _Will update as we develop application further._
 
 ## Support and contact details
 
-_ophelia.swen@gmail.com or alexanderjmarkow@gmail.com\_
+ophelia.swen@gmail.com or alexanderjmarkow@gmail.com
 
 ## Technologies Used
 
