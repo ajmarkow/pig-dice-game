@@ -146,4 +146,9 @@ Expect: scoreCard.total.toEqual(6)
 -connect user interface to functions
 -test new methods on player object
 
--
+Functions to refactor into prototype methods on player object:
+
+-scoreCard x
+-createTurn (also doesnt work so we need to rewrite it)
+-grandTotal x
+-TurnTotal x
