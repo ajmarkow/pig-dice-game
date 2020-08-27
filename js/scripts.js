@@ -1,72 +1,69 @@
 // ** Business Logic
-let player1scorecard = [2, 3];
-let player2scorecard = [];
-let player1turnarray = [];
-let player2turnarray = [];
+// let player1scorecard = [2, 3];
+// let player2scorecard = [];
+// let player1turnarray = [];
+// let player2turnarray = [];
 
-function rollDice() {
-  let dicevalue = Math.floor(Math.random() * 6) + 1;
-  this.dicevalue = dicevalue;
-  return dicevalue;
-  console.log(dicevalue);
-}
+// function rollDice() {
+//   let dicevalue = Math.floor(Math.random() * 6) + 1;
+//   // * ! this keyword is only used in prototype methods. 
+//   // this.dicevalue = dicevalue;
+//   return dicevalue;
+//   console.log(dicevalue);
+// }
 
-function scoreCard() {
-  this.playerscorecard = [];
-  return this.playerscorecard;
-}
+// function scoreCard() {
+//    // * ! this keyword is only used in prototype methods. 
+//   // this.playerscorecard = [];
+//   return this.playerscorecard;
+// }
 
-// *Doesn't work
-function createTurn(dicevalue) {
-  const turnarray = [];
-  // for (let index = 1; dicevalue != 1; index += 1) {
-  turnarray.push(dicevalue);
-  console.log(turnarray);
-  // }
-}
+// // *Doesn't work
+// function createTurn(dicevalue) {
+//   const turnarray = [];
+//   // for (let index = 1; dicevalue != 1; index += 1) {
+//   turnarray.push(dicevalue);
+//   console.log(turnarray);
+//   // }
+// }
 
-function grandTotal(array) {
-  let grandtotal = array.reduce((a, b) => a + b);
-  return grandtotal;
-}
+// function grandTotal(array) {
+//   let grandtotal = array.reduce((a, b) => a + b);
+//   return grandtotal;
+// }
 
-function turnTotal(array) {
-  let answervalue = array.reduce((a, b) => a + b);
-  return answervalue;
-}
+// function turnTotal(array) {
+//   let answervalue = array.reduce((a, b) => a + b);
+//   return answervalue;
+// }
 
-function recordTurnScore(array) {
-  let turnscore = array.reduce((a, b) => a + b);
-  this.playerscorecard.push(turnscore);
-  player1turnarray.length = 0;
-}
-function EndTurn() {
-  const numberRolled = 1;
-  switch (numberRolled) {
-    case 1:
-      console.log("Turn over!");
-      break;
-    default:
-      console.log("Roll again or Hold");
-  }
-}
+// function recordTurnScore(array) {
+//   let turnscore = array.reduce((a, b) => a + b);
+//   this.playerscorecard.push(turnscore);
+//   player1turnarray.length = 0;
+// }
+// function EndTurn() {
+//   const numberRolled = 1;
+//   switch (numberRolled) {
+//     case (1):
+//       console.log("Turn over!");
+//       break;
+//     default:
+//       console.log("Roll again or Hold");
+//   }
+// }
 
-player.prototype.checkScore = function () {
-  if (this.grandTotal >= 100) {
-    youWon();
-  } else {
-  }
-};
 
-function newGame() {
-  player1scorecard.length = 0;
-  player2scorecard.length = 0;
-}
 
-function youWon() {
-  alert("YOU WON!");
-  $("#youwon").HTML("<em>");
-}
+// function newGame() {
+//   player1scorecard.length = 0;
+//   player2scorecard.length = 0;
+// }
+
+// function youWon() {
+//   alert("YOU WON!");
+//   $("#youwon").HTML("<em>");
+// }
 
 //Object Constructor
 function player(playername) {
@@ -75,32 +72,69 @@ function player(playername) {
   this.turnArray = [];
   this.roll = rollDice();
   this.hold = recordTurnScore();
-  this.grandTotal = grandTotal();
+  this.grandTotal = 0;
+  this.turnTotal = 0;
 }
+
+let player1 = new Player('person');
+let player2 = new Player('otherperson');
+
+// works without parameter (roll function)
 player.prototype.roll = function (roll) {
   this.roll = Math.floor(Math.random() * 6) + 1;
 };
 
 player.prototype.grandTotal = function () {
-  return grandTotal(player.turnArray);
+  let grandtotal = this.scoreCard.reduce((a, b) => a + b);
+  return grandtotal;
 };
 
 player.prototype.turnTotal = function () {
-  return turnTotal(player.turnArray);
+  let answervalue = this.turnArray.reduce((a, b) => a + b);
+  return answervalue;
 };
 
 player.prototype.recordTurnScore = function () {
-  this.grandTotal += this.turnScore;
-  // this.turnScore = 0;
-  recordTurnScore(player.scoreCard);
+  let turnscore = this.turnArray.reduce((a, b) => a + b);
+  this.scoreCard.push(turnscore);
+  player1turnarray.length = 0;
+  return turnscore;
 };
 
 player.prototype.EndTurn = function () {
-  EndTurn();
+  const numberRolled = 1;
+  switch (numberRolled) {
+    case (1):
+      console.log("Turn over!");
+      break;
+    default:
+      console.log("Roll again or Hold");
+  }
 };
 
-let player1 = { name: "player1", arrays: [player1turnarray, player1scorecard] };
-let player2 = { name: "player1", arrays: [player2turnarray, player2scorecard] };
+player.prototype.checkScore = function () {
+  if (grandTotal(this.scoreCard) >= 100) {
+    youWon();
+  } else {
+  }
+};
+
+player.prototype.youWon = function () {
+  alert( this.player.name + "WON!");
+  $("#youwon").HTML("<em>");
+}
+
+player.prototype.getScore = function () {
+  return this.scoreCard;
+}
+
+// * ! Try approach like line 110.
+// let player1 = { name: "player1", arrays: [player1turnarray, player1scorecard] };
+// let player2 = { name: "player1", arrays: [player2turnarray, player2scorecard] };
+
+
+//How you call the prototype function on the constructor object
+// player1.roll()
 
 // function nextTurn(){
 //     if (player 1 turn)
@@ -110,23 +144,23 @@ let player2 = { name: "player1", arrays: [player2turnarray, player2scorecard] };
 // }
 // ** User Interface Logic
 
-// $(#button).click(function(){
-// turnarray = 0;
-// for (var i)
+$(#button).click(function(){
+turnarray = 0;
+for (var i)
 
-// }
+}
 
-// function attachButtonListeners() {
-//   $("#rolldieplayer1").on("click", function () {
-//     showButton(this.id);
-//   });
-//   $("#rolldieplayer2").on("click", function () {
-//     showButton(this.id);
-//   });
-//   $("#endturnplayer1").on("click", function () {
-//     showButton(this.id);
-//   });
-//   $("#endturnplayer2").on("click", function () {
-//     showButton(this.id);
-//   });
-// }
+function attachButtonListeners() {
+  $("#rolldieplayer1").on("click", function () {
+    showButton(this.id);
+  });
+  $("#rolldieplayer2").on("click", function () {
+    showButton(this.id);
+  });
+  $("#endturnplayer1").on("click", function () {
+    showButton(this.id);
+  });
+  $("#endturnplayer2").on("click", function () {
+    showButton(this.id);
+  });
+}
